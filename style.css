@@ -29,6 +29,10 @@ header {
     box-shadow: 0 2px 4px var(--shadow-color);
 }
 
+header h1 {
+    text-align: center; /* Centraliza o título no header */
+}
+
 header h1 .leaf {
     display: inline-block;
     transform: rotate(-20deg);
@@ -41,8 +45,8 @@ header h1:hover .leaf {
 
 main {
     padding: 2rem 5%;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Limita a largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o conteúdo principal */
 }
 
 section {
@@ -60,9 +64,10 @@ h2 {
     font-weight: 600;
 }
 
+/* Responsividade dos cards de métricas */
 .dashboard-metrics {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min de 280px para evitar quebras muito cedo */
     gap: 1.5rem;
 }
 
@@ -101,9 +106,13 @@ h2 {
     font-size: 1rem;
     font-style: italic;
     color: var(--primary-color);
-    min-height: 48px;
+    min-height: 48px; /* Garante que o card não encolha muito */
+    display: flex; /* Para centralizar o texto verticalmente, se necessário */
+    align-items: center;
+    justify-content: center;
 }
 
+/* Responsividade dos formulários de log */
 .log-forms {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -161,9 +170,10 @@ button:hover {
     transform: translateY(-2px);
 }
 
+/* Responsividade dos containers dos gráficos */
 .charts-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Empilha em telas menores */
     gap: 2rem;
     align-items: center;
 }
@@ -172,6 +182,12 @@ button:hover {
     padding: 1.5rem;
     background: var(--background-color);
     border-radius: 8px;
+    /* Adiciona altura mínima para evitar quebras em gráficos vazios */
+    min-height: 300px; 
+    display: flex; /* Para flexbox interno, se necessário */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .chart-card h3 {
@@ -180,6 +196,13 @@ button:hover {
     color: var(--primary-color);
     font-weight: 600;
 }
+
+/* Garante que o canvas seja responsivo */
+.chart-card canvas {
+    max-width: 100% !important; /* Sobrescreve o estilo inline do Chart.js */
+    height: auto !important; /* Garante proporção */
+}
+
 
 #activity-list {
     margin-top: 1rem;
@@ -194,15 +217,20 @@ button:hover {
     border-radius: 4px;
     margin-bottom: 0.8rem;
     border-left: 4px solid var(--accent-color);
+    flex-wrap: wrap; /* Permite que o texto quebre em linhas menores */
 }
 
 .activity-item p {
     margin: 0;
+    flex-basis: 70%; /* Ocupa 70% da largura, o resto é do footprint */
+    word-break: break-word; /* Quebra palavras longas */
 }
 
 .activity-item .footprint {
     font-weight: 600;
     color: var(--primary-color);
+    flex-basis: 25%; /* Ocupa o restante */
+    text-align: right;
 }
 
 #clear-data {
@@ -225,17 +253,60 @@ footer {
     background-color: #e9ecef;
 }
 
-@media (max-width: 992px) {
+/* Media Queries para ajustes finos */
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem 3%; /* Menos padding em telas menores */
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-metrics,
+    .log-forms,
     .charts-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Força empilhamento em colunas únicas */
+        gap: 1.2rem;
+    }
+
+    .metric-card p {
+        font-size: 1.8rem; /* Reduz tamanho da fonte das métricas */
+    }
+
+    .log-form, .chart-card {
+        padding: 1.2rem;
+    }
+
+    .activity-item {
+        flex-direction: column; /* Empilha descrição e pegada */
+        align-items: flex-start;
+    }
+
+    .activity-item p, .activity-item .footprint {
+        flex-basis: 100%; /* Ocupa 100% da largura */
+        text-align: left;
     }
 }
 
-@media (max-width: 768px) {
-    h2 {
+@media (max-width: 480px) {
+    header {
+        padding: 1rem 3%;
+    }
+    header h1 {
         font-size: 1.5rem;
     }
-    .log-forms {
-         grid-template-columns: 1fr;
+    section {
+        padding: 1rem;
+    }
+    h2 {
+        font-size: 1.4rem;
+    }
+    .metric-card p {
+        font-size: 1.6rem;
+    }
+    button {
+        padding: 0.7rem;
+        font-size: 0.9rem;
     }
 }
