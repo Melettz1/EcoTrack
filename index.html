@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack | Seu Rastreador de Pegada de Carbono</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h1><span class="leaf">🌿</span> EcoTrack</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <h2>Seu Painel de Impacto</h2>
+            <div class="dashboard-metrics">
+                <div class="metric-card">
+                    <h3>Pegada Total de CO₂</h3>
+                    <p id="total-footprint">0.00 kg</p>
+                    <span>Total acumulado</span>
+                </div>
+                <div class="metric-card">
+                    <h3>Meta Diária</h3>
+                    <p>15.00 kg</p>
+                    <span>Média recomendada</span>
+                </div>
+                <div class="metric-card" id="tips-card">
+                    <h3>Dica Sustentável</h3>
+                    <p id="sustainable-tip">Adicione uma atividade para receber uma dica!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="logging">
+            <h2>Adicionar Atividade Sustentável</h2>
+            <div class="log-forms">
+                <form id="transport-form" class="log-form">
+                    <h3>Transporte</h3>
+                    <div class="input-group">
+                        <label for="transport-type">Meio de Transporte</label>
+                        <select id="transport-type" name="transport-type" required>
+                            <option value="car">Carro (Gasolina)</option>
+                            <option value="motorcycle">Moto</option>
+                            <option value="bus">Ônibus</option>
+                            <option value="metro">Metrô/Trem</option>
+                            <option value="bike">Bicicleta</option>
+                            <option value="walk">Caminhada</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="distance">Distância (km)</label>
+                        <input type="number" id="distance" name="distance" min="0" step="0.1" required>
+                    </div>
+                    <button type="submit">Adicionar Transporte</button>
+                </form>
+
+                <form id="energy-form" class="log-form">
+                    <h3>Energia</h3>
+                    <div class="input-group">
+                        <label for="energy-usage">Consumo de Eletricidade (kWh)</label>
+                        <input type="number" id="energy-usage" name="energy-usage" min="0" step="0.1" required>
+                    </div>
+                    <button type="submit">Adicionar Consumo</button>
+                </form>
+
+                <form id="food-form" class="log-form">
+                    <h3>Alimentação</h3>
+                     <div class="input-group">
+                        <label for="diet-type">Tipo de Dieta do Dia</label>
+                        <select id="diet-type" name="diet-type" required>
+                            <option value="meat-high">Rica em Carne Vermelha</option>
+                            <option value="meat-average">Consumo Médio de Carne</option>
+                            <option value="vegetarian">Vegetariana</option>
+                            <option value="vegan">Vegana</option>
+                        </select>
+                    </div>
+                    <button type="submit">Adicionar Dieta</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="analysis">
+            <h2>Análise de Emissões</h2>
+             <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Emissões por Categoria</h3>
+                    <canvas id="category-chart"></canvas>
+                </div>
+                <div class="chart-card">
+                     <h3>Histórico de Emissões (kg CO₂)</h3>
+                     <canvas id="history-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="history">
+            <h2>Histórico de Atividades</h2>
+            <div id="activity-list">
+                <p>Nenhuma atividade registrada ainda.</p>
+            </div>
+             <button id="clear-data">Limpar Histórico</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EcoTrack. Desenvolvido por @Melettz1.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
